@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block maincontents %}
+
+<br></br>
+
+<table>
+    <td>id</td>
+        <td>location</td>
+
+        <td>srcIP</td>
+        <td>srcPort</td>
+        <td>status</td>
+{% for item in robots %}
+    <tr>
+        <td>{{item["id"]}}</td>
+        <td>{{item["location"]}}</td>
+
+        <td>{{item["srcIP"]}}</td>
+        <td>{{item["srcPort"]}}</td>
+        <td>{{item["status"]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br></br>
+<br></br>
+<table>
+    <td>id</td>
+        <td>location</td>
+        <td>Estimated Time Required</td>
+        <td>Robots Required</td>
+        <td>Completed</td>
+        <td>Robots Assigned</td>
+{% for item in tasks %}
+    <tr>
+        <td>{{item["id"]}}</td>
+        <td>{{item["location"]}}</td>
+
+        <td>{{item["time"]}}</td>
+        <td>{{item["robots required"]}}</td>
+        <td>{{item["completed"]}}</td>
+        <td>{{item["assigned"]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+{{ tasks }}
+{% if page == 0 %}
+<p> <a href="{{url_for('main', page=page+1)}}">next page</a></p>
+{% else %}
+<p><a href="{{url_for('main', page=page-1)}}">preivious page</a> <a href="{{url_for('main', page=page+1)}}">next page</a></p>
+{% endif %}
+{% endblock %}
